@@ -1,0 +1,5 @@
+.dropdown-toggle,
+.dropdown-item,
+.welcome-text:hover {
+  cursor: pointer !important;
+}
