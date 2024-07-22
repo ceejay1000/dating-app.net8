@@ -43,4 +43,14 @@ export class TestErrorsComponent {
       },
     });
   }
+
+  getValidationError() {
+    this.http.post(this.baseUrl + 'account/login', {}).subscribe({
+      next: (response) => console.log(response),
+      error: (error) => {
+        console.log(error);
+        this.validationErrors = error;
+      },
+    });
+  }
 }

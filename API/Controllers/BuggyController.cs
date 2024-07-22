@@ -34,6 +34,6 @@ public class BuggyController(DataContext context): BaseApiController
     [HttpGet("bad-request")]
     public ActionResult<string> GetBadRequest()
     {
-        return BadRequest();
+        return BadRequest("This is a bad request");
     }
 }
