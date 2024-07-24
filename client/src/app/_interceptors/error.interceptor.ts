@@ -1,14 +1,27 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import {
+  HttpEventType,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { catchError } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 
-export const errorInterceptor: HttpInterceptorFn = (req, next) => {
+export const errorInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) => {
   const router = inject(Router);
   const toastr = inject(ToastrService);
 
   return next(req).pipe(
+    tap((event) => {
+      if (event.type === HttpEventType.Response) {
+        console.log('Http response => ', event);
+      }
+    }),
     catchError((error) => {
       if (error) {
         switch (error.status) {
