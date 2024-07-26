@@ -9,14 +9,10 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   registerMode = false;
   users: any[] = [];
   http = inject(HttpClient);
-
-  ngOnInit(): void {
-    this.getUsers();
-  }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
@@ -24,14 +20,5 @@ export class HomeComponent implements OnInit {
 
   cancelRegisterMode($event: boolean) {
     this.registerMode = $event;
-  }
-
-  getUsers() {
-    this.http.get<any[]>('http://localhost:5213/api/users').subscribe({
-      next: (data) => {
-        console.log('Data ', data);
-        this.users = data;
-      },
-    });
   }
 }
