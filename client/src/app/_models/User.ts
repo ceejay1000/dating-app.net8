@@ -3,6 +3,7 @@ import { Photo } from './Photo';
 export interface User {
   username: string;
   token: string;
+  PhotoUrl: string;
 }
 
 export interface Member {

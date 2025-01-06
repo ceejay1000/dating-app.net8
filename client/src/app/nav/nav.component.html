@@ -52,6 +52,11 @@
     @if (accountService.currentUser()){
 
     <div dropdown class="dropdown ms-auto">
+      <img
+        src="{{
+          accountService.currentUser()?.PhotoUrl || './assets/user.png'
+        }}"
+      />
       <a
         dropdownToggle="dropdown-toggle text-white welcome-text"
         style="color: white"
